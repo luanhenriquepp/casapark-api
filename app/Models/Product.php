@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Store;
 
-class Product extends Model
+class Product extends AbstractModel
 {
     protected $table = 'tb_product';
     protected $primaryKey = 'product_id';
@@ -17,7 +17,13 @@ class Product extends Model
         'description',
         'price',
         'discount',
-        'link_whatsapp',
-        'price_with_discount'
+        'price_with_discount',
+        'store_id'
     ];
+
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class, 'store_id');
+    }
 }

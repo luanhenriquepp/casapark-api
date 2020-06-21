@@ -25,11 +25,9 @@ class ProductRequest extends FormRequest
     {
         return [
             'product_name' => '',
-            'product_name' => '',
             'description' => '',
             'price' => '',
             'discount' => '',
-            'link_whatsapp' => '',
             'price_with_discount' => ''
         ];
     }

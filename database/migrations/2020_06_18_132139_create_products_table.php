@@ -19,8 +19,11 @@ class CreateProductsTable extends Migration
             $table->string('description');
             $table->float('price');
             $table->integer('discount');
-            $table->string('link_whatsapp');
             $table->float('price_with_discount');
+            $table->bigInteger('store_id')->unsigned();
+            $table->foreign('store_id', 'store_id_fk')
+                ->references('store_id')
+                ->on('tb_store');
             $table->timestamps();
         });
     }
