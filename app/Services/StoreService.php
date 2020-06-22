@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Http\Requests\StoreRequest;
 use App\Repositories\ProductRepository;
 use App\Repositories\StoreRepository;
+use Illuminate\Http\JsonResponse;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 class StoreService extends AbstractService
 {
@@ -24,30 +26,28 @@ class StoreService extends AbstractService
     /**
      * @param  $request
      * @return JsonResponse $advertisement
+     * @throws ValidatorException
      */
     public function create(StoreRequest $request)
     {
-
-        $store = $this->repository->create($request->all());
-
         try {
-            $store->save();
-            if ($store) {
-                $store->store_image = $this->createFile($request);
-                $store->save();
-            }
-            return $store;
+            $image = $this->handleImage($request->file('store_image')->path());
+            $data = $request->all();
+            $data['store_image'] = $image;
+            return $this->repository->create($data);
         }catch (Exception $e) {
             Log::error($e->getMessage());
         }
     }
 
-    public function createFile($file)
+    /**
+     * @param $file
+     * @return JsonResponse|string
+     */
+    public function handleImage($file)
     {
-
-        $fileName = uniqid().date('Y-m-d').'.'.mb_strtolower($file->store_image->getClientOriginalExtension());
-        $directory = 'store/';
-        $file->store_image->storeAs('public/'.$directory, $fileName);
-        return $directory.$fileName;
+        if (!$file)
+            return response()->json(['error' => 'Por favor selecione uma imagem!']);
+        return base64_encode(file_get_contents($file));
     }
 }

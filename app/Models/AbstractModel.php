@@ -12,6 +12,6 @@ abstract class AbstractModel extends Model
        'deleted_at',
        'password',
        'remember_token',
-       'store_image'
+//       'store_image'
    ];
 }
