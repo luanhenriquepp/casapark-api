@@ -20,9 +20,7 @@ class StoreRepository extends BaseRepository
 
     ];
 
-    protected $fieldSearchable = [
-        'store_name' => 'ilike',
-    ];
+    protected $fieldSearchable = [];
 
     /**
      * Specify Model class name

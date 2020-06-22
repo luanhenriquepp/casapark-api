@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('description');
             $table->float('price');
             $table->integer('discount');
+            $table->longText('product_image');
             $table->float('price_with_discount');
             $table->bigInteger('store_id')->unsigned();
             $table->foreign('store_id', 'store_id_fk')

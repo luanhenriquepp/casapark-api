@@ -25,8 +25,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'link_wpp' => 'required',
-            'store_name' => 'required',
-            'store_image' => 'required|mimes:jpeg,png'
+            'store_name' => 'required'
         ];
     }
 
@@ -39,8 +38,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'link_wpp'      => 'Link do WhatsApp',
-            'store_name'    => 'Nome da Loja',
-            'store_image'   => 'Foto'
+            'store_name'    => 'Nome da Loja'
         ];
     }
 
@@ -53,8 +51,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'link_wpp.required' => 'Link do whatsapp é obrigatório',
-            'store_name.required' => 'Nome da loja é obrigatório',
-            'store_name.mimes:jpeg,png' => 'A foto deve ser em formato jpeg ou png',
+            'store_name.required' => 'Nome da loja é obrigatório'
         ];
     }
 }

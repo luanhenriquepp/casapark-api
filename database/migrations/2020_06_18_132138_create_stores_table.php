@@ -17,7 +17,6 @@ class CreateStoresTable extends Migration
             $table->bigIncrements('store_id');
             $table->string('link_wpp');
             $table->string('store_name');
-            $table->longText('store_image');
             $table->timestamps();
         });
     }

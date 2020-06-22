@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use App\Product;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class Store extends AbstractModel
 {
@@ -13,18 +11,8 @@ class Store extends AbstractModel
 
     protected $fillable = [
         'store_name',
-        'link_wpp',
-        'store_image',
+        'link_wpp'
     ];
-
-//    protected $appends = [
-//        'file_path'
-//    ];
-
-//    public function getFilePathAttribute()
-//    {
-//        return Storage::url($this->attributes['store_image']);
-//    }
 
     public function product()
     {

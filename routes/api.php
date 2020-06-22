@@ -18,5 +18,6 @@ Route::post('register', 'UserController@register');
 Route::group(['middleware' => 'auth:api'], function()
 {
     Route::resource('store', 'StoreController');
+    Route::resource('product', 'ProductController');
 });
 

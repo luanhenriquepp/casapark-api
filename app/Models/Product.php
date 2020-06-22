@@ -13,6 +13,7 @@ class Product extends AbstractModel
     protected $fillable = [
         'product_name',
         'product_id',
+        'product_image',
         'product_name',
         'description',
         'price',

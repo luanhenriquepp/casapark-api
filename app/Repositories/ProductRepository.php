@@ -16,13 +16,9 @@ class ProductRepository extends BaseRepository
 {
 
     public $relationships = [
-        'user'
     ];
 
-    protected $fieldSearchable = [
-        'product_name' => 'ilike',
-        'description'=> 'ilike'
-    ];
+    protected $fieldSearchable = [];
 
     /**
      * Specify Model class name
