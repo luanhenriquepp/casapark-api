@@ -25,8 +25,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'link_wpp' => 'required',
-            'store_name' => 'required',
-            'store_image' => 'required',
+            'store_name' => 'required'
         ];
     }
 
