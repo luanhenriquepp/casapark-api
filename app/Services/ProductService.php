@@ -7,6 +7,7 @@ use App\Repositories\ProductRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -32,6 +33,8 @@ class ProductService extends AbstractService
      */
     public function create(StoreRequest $request)
     {
+
+        DB::beginTransaction();
         try {
             $path = Storage::disk('s3')
                 ->put('store', $request->file);
@@ -40,11 +43,15 @@ class ProductService extends AbstractService
             ]);
             $data = $request->except('file');
 
-            return $this->repository
+            $product = $this->repository
                 ->create($data);
+
+            DB::commit();
+            return $product;
         } catch (ValidatorException $e) {
             Log::info("Erro na service criar produto");
             Log::error($e->getMessage());
+            DB::rollBack();
         }
     }
 }
