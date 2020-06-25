@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\AbstractModel;
 use App\Models\Store;
 use Illuminate\Support\Facades\Storage;
 
