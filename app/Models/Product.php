@@ -14,7 +14,6 @@ class Product extends AbstractModel
         'product_name',
         'product_id',
         'product_image',
-        'product_name',
         'description',
         'price',
         'discount',
