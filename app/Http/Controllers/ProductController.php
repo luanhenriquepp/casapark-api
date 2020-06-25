@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Http\Requests\ProductRequest;
+use App\Http\Requests\StoreRequest;
 use App\Services\ProductService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
-use Prettus\Validator\Exceptions\ValidatorException;
 
 class ProductController extends AbstractController
 {
@@ -15,16 +15,22 @@ class ProductController extends AbstractController
         $this->service = $service;
     }
 
-    public function store(ProductRequest $request)
+    /**
+     * @param StoreRequest $request
+     * @return JsonResponse
+     */
+    public function store(StoreRequest $request)
     {
         try {
             $data = $this->service->create($request);
+
             return response()->json([
-                'data' => $data
-            ]);
-        } catch (ValidatorException | \Exception $e) {
-            Log::error($e->getMessage());
-            return $e;
+                'data' => $data,
+                'success' => true
+            ], Response::HTTP_OK);
+        } catch (\Exception $exception) {
+            Log::info("Erro na controller criar produto");
+            Log::error($exception->getMessage());
         }
     }
 }

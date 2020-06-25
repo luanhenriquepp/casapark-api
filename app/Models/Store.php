@@ -13,17 +13,8 @@ class Store extends AbstractModel
     protected $fillable = [
         'store_name',
         'link_wpp',
-        'store_image',
+        'path',
     ];
-
-    protected $appends = [
-        'file_path'
-    ];
-
-    public function getFilePathAttribute()
-    {
-        return Storage::url($this->attributes['store_image']);
-    }
 
     public function product()
     {

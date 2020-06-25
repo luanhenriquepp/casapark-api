@@ -30,7 +30,7 @@ class ProductRequest extends FormRequest
             'price' => 'required',
             'discount' => 'required',
             'price_with_discount' => 'required',
-            'store_image' => 'required|mimes:jpeg,png'
+            'path' => ''
         ];
     }
 

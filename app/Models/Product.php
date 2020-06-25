@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Store;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends AbstractModel
 {
@@ -13,7 +14,7 @@ class Product extends AbstractModel
     protected $fillable = [
         'product_name',
         'product_id',
-        'product_image',
+        'path',
         'description',
         'price',
         'discount',
@@ -21,6 +22,13 @@ class Product extends AbstractModel
         'store_id'
     ];
 
+    public function getUrlAttribute()
+    {
+        return Storage::disk('s3')->url($this->path);
+    }
+    protected $appends = [
+        'url'
+    ];
 
     public function store()
     {
