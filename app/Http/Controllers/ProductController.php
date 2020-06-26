@@ -15,6 +15,11 @@ class ProductController extends AbstractController
         $this->service = $service;
     }
 
+
+    public function publicPage()
+    {
+        return parent::index();
+    }
     /**
      * @param StoreRequest $request
      * @return JsonResponse
