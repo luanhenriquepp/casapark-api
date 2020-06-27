@@ -32,7 +32,7 @@ class ProductController extends AbstractController
             return response()->json([
                 'data' => $data,
                 'success' => true
-            ], Response::HTTP_OK);
+            ], Response::HTTP_CREATED);
         } catch (\Exception $exception) {
             Log::info("Erro na controller criar produto");
             Log::error($exception->getMessage());

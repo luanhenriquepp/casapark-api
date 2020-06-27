@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 abstract class AbstractController extends Controller
 {
@@ -19,7 +21,16 @@ abstract class AbstractController extends Controller
      */
     public function index()
     {
-        return $this->service->all();
+        try {
+            $data = $this->service->all();
+            return response()->json([
+                'data' => $data,
+                'success' => true
+            ], Response::HTTP_OK);
+        } catch (Exception $exception) {
+            Log::info("Erro no método listar da abstract controller");
+            Log::error($exception->getMessage());
+        }
     }
 
     /**
@@ -43,7 +54,16 @@ abstract class AbstractController extends Controller
      */
     public function save($request)
     {
-        return $this->service->save($request);
+        try {
+          $data = $this->service->save($request);
+          return response()->json([
+              'data' => $data,
+              'success' => true
+          ], Response::HTTP_CREATED);
+        } catch (Exception $exception) {
+            Log::info("Erro no método criar da abstract controller");
+            Log::error($exception->getMessage());
+        }
     }
 
     /**
