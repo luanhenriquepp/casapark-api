@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRequest;
 use App\Services\StoreService;
+use Exception;
+use Illuminate\Http\JsonResponse;
 
 class StoreController extends AbstractController
 {
@@ -20,5 +22,15 @@ class StoreController extends AbstractController
     public function store(StoreRequest $request)
     {
         return parent::save($request);
+    }
+
+    /**
+     * @param $id
+     * @return JsonResponse
+     * @throws Exception
+     */
+    public function destroy($id)
+    {
+        return parent::delete($id);
     }
 }
