@@ -16,6 +16,7 @@ class ProductRepository extends BaseRepository
 {
 
     public $relationships = [
+        'store'
     ];
 
     protected $fieldSearchable = [];
