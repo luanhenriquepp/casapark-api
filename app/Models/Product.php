@@ -17,7 +17,6 @@ class Product extends AbstractModel
         'description',
         'price',
         'discount',
-        'price_with_discount',
         'store_id'
     ];
 

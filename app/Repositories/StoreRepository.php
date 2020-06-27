@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Models\Product;
 use App\Models\Store;
 use App\Purchase;
 use Prettus\Repository\Eloquent\BaseRepository;

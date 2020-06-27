@@ -29,7 +29,6 @@ class ProductRequest extends FormRequest
             'description' => 'required',
             'price' => 'required',
             'discount' => 'required',
-            'price_with_discount' => 'required',
             'path' => ''
         ];
     }
