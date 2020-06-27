@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
-use App\Http\Requests\StoreRequest;
 use App\Services\ProductService;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -18,6 +17,9 @@ class ProductController extends AbstractController
     }
 
 
+    /**
+     * @return JsonResponse
+     */
     public function publicPage()
     {
         return parent::index();
