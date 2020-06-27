@@ -12,8 +12,7 @@ class Store extends AbstractModel
 
     protected $fillable = [
         'store_name',
-        'link_wpp',
-        'path',
+        'link_wpp'
     ];
 
     public function product()
