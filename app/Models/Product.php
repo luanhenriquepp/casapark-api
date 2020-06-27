@@ -1,9 +1,7 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Models\AbstractModel;
-use App\Models\Store;
 use Illuminate\Support\Facades\Storage;
 
 class Product extends AbstractModel
