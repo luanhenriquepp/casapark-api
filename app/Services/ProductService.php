@@ -2,10 +2,9 @@
 
 namespace App\Services;
 
-use App\Http\Requests\StoreRequest;
+use App\Http\Requests\ProductRequest;
 use App\Repositories\ProductRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -28,16 +27,16 @@ class ProductService extends AbstractService
     }
 
     /**
-     * @param StoreRequest $request
+     * @param ProductRequest $request
      * @return LengthAwarePaginator|Collection|mixed
      */
-    public function create(StoreRequest $request)
+    public function create(ProductRequest $request)
     {
 
         DB::beginTransaction();
         try {
             $path = Storage::disk('s3')
-                ->put('store', $request->file);
+                ->put('/store', $request->file);
             $request->merge([
                 'path' => $path
             ]);

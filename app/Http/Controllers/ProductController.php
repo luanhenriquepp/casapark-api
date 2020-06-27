@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Http\Requests\StoreRequest;
 use App\Services\ProductService;
 use Illuminate\Http\JsonResponse;
@@ -20,11 +21,12 @@ class ProductController extends AbstractController
     {
         return parent::index();
     }
+
     /**
-     * @param StoreRequest $request
+     * @param ProductRequest $request
      * @return JsonResponse
      */
-    public function store(StoreRequest $request)
+    public function store(ProductRequest $request)
     {
         try {
             $data = $this->service->create($request);
