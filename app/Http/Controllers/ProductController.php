@@ -49,7 +49,7 @@ class ProductController extends AbstractController
      * @return JsonResponse
      * @throws Exception
      */
-    public function delete($id)
+    public function destroy($id)
     {
         return parent::delete($id);
     }
