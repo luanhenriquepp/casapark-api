@@ -6,6 +6,7 @@ use App\Http\Requests\ProductRequest;
 use App\Repositories\ProductRepository;
 use App\Repositories\StoreRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -31,6 +32,14 @@ class ProductService extends AbstractService
         $this->storeRepository = $storeRepository;
     }
 
+    public function getAllPublicPage()
+    {
+        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+
+        return $this->repository->with($this->repository->relationships)->paginate(250);
+
+
+    }
     /**
      * @param ProductRequest $request
      * @return LengthAwarePaginator|Collection|mixed

@@ -21,7 +21,10 @@ class ProductController extends AbstractController
      */
     public function publicPage()
     {
-        return parent::index();
+        return response()->json([
+            'data' => $this->service->getAllPublicPage(),
+            'message' => 'Lista'
+        ], Response::HTTP_OK);
     }
 
     /**
