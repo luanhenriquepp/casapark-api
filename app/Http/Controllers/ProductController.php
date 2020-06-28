@@ -43,6 +43,25 @@ class ProductController extends AbstractController
     }
 
     /**
+     * @param ProductRequest $request
+     * @param $id
+     * @return JsonResponse
+     */
+    public function update(ProductRequest $request, $id)
+    {
+        try {
+            $data = $this->service->updateProduct($request, $id);
+            return response()->json([
+                'data' => $data,
+                'success' => true
+            ], Response::HTTP_OK);
+        } catch (Exception $exception) {
+            Log::error($exception->getMessage());
+            Log::info("Erro na controller atualizar produto");
+        }
+    }
+
+    /**
      * @param $id
      * @return JsonResponse
      * @throws Exception

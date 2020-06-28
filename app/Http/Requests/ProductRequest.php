@@ -45,9 +45,7 @@ class ProductRequest extends FormRequest
             'product_name' => 'Nome do produto',
             'description' => 'Descrição',
             'price' => 'Preço',
-            'discount' => 'Desconto',
-            'price_with_discount' => 'Preço final',
-            'store_image' => 'Foto'
+            'discount' => 'Desconto'
         ];
     }
 
@@ -59,14 +57,11 @@ class ProductRequest extends FormRequest
     public function messages()
     {
         return [
-            'store_id.required' => 'Id da loja',
-            'product_name.required' => 'Nome do produto',
-            'description.required' => 'Descrição',
-            'price.required' => 'Preço',
-            'discount.required' => 'Desconto',
-            'price_with_discount.required' => 'Preço final',
-            'product_image.mimes:jpeg,png' => 'A foto deve ser em formato jpeg ou png',            'link_wpp.required' => 'Link do whatsapp é obrigatório',
-
+            'store_id.required' => ' O campo :attribute é obrigatório',
+            'product_name.required' => 'O campo :attribute é obrigatório',
+            'description.required' => 'O campo :attribute é obrigatório',
+            'price.required' => 'O campo :attribute é orbigatório',
+            'discount.required' => 'O campo :attribute é obrigatório'
         ];
     }
 }

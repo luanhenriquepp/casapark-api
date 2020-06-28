@@ -23,6 +23,7 @@ class ProductService extends AbstractService
     /**
      * PurchaseService constructor.
      * @param ProductRepository $repository
+     * @param StoreRepository $storeRepository
      */
     public function __construct(ProductRepository $repository, StoreRepository $storeRepository)
     {
@@ -38,10 +39,7 @@ class ProductService extends AbstractService
     {
         DB::beginTransaction();
         try {
-            $store = $this->storeRepository->find($request->store_id);
-            $newstring = Str::of($store->store_name)->replace(' ', '-')->lower();
-            $path = Storage::disk('s3')
-                ->put($newstring, $request->file);
+            $path = $this->saveImageOnS3($request);
             $request->merge([
                 'path' => $path
             ]);
@@ -56,6 +54,25 @@ class ProductService extends AbstractService
             Log::info("Erro na service criar produto");
             Log::error($e->getMessage());
             DB::rollBack();
+        }
+    }
+
+    public function updateProduct(ProductRequest $request, $id)
+    {
+        try {
+            if (!$request->hasFile('file')) {
+                return $this->repository->update($request->all(), $id);
+            };
+            $this->removeImageFromS3($request->path);
+            $path = $this->saveImageOnS3($request);
+            $request->merge([
+                'path' => $path
+            ]);
+            $data = $request->except('file');
+            return $this->repository->update($data, $id);
+        } catch (ValidatorException $e) {
+            Log::info("Erro service de atualizar produto");
+            Log::error($e->getMessage());
         }
     }
 
@@ -82,5 +99,17 @@ class ProductService extends AbstractService
     public function removeImageFromS3($image)
     {
         return Storage::disk('s3')->delete($image);
+    }
+
+    /**
+     * @param $request
+     * @return bool
+     */
+    public function saveImageOnS3($request)
+    {
+        $store = $this->storeRepository->find($request->store_id);
+        $path = Str::of($store->store_name)->replace(' ', '-')->lower();
+        return Storage::disk('s3')
+            ->put($path, $request->file);
     }
 }
