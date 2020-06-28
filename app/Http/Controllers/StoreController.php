@@ -19,6 +19,10 @@ class StoreController extends AbstractController
         $this->service = $service;
     }
 
+    /**
+     * @param StoreRequest $request
+     * @return JsonResponse
+     */
     public function store(StoreRequest $request)
     {
         return parent::save($request);
@@ -31,6 +35,6 @@ class StoreController extends AbstractController
      */
     public function destroy($id)
     {
-        return parent::delete($id);
+        return $this->service->delete($id);
     }
 }

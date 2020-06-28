@@ -16,7 +16,6 @@ class ProductController extends AbstractController
         $this->service = $service;
     }
 
-
     /**
      * @return JsonResponse
      */
@@ -33,7 +32,6 @@ class ProductController extends AbstractController
     {
         try {
             $data = $this->service->create($request);
-
             return response()->json([
                 'data' => $data,
                 'success' => true
@@ -51,6 +49,6 @@ class ProductController extends AbstractController
      */
     public function destroy($id)
     {
-        return parent::delete($id);
+        return $this->service->removeProduct($id);
     }
 }

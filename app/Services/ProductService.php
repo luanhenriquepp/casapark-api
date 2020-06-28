@@ -52,10 +52,35 @@ class ProductService extends AbstractService
 
             DB::commit();
             return $product;
-        } catch (ValidatorException $e) {
+        } catch (ValidatorException | \Exception $e) {
             Log::info("Erro na service criar produto");
             Log::error($e->getMessage());
             DB::rollBack();
         }
+    }
+
+    /**
+     * @param $id
+     * @return null
+     */
+    public function removeProduct($id)
+    {
+        try {
+            $store = $this->repository->find($id);
+            $this->removeImageFromS3($store->path);
+            return parent::delete($id);
+        } catch (\Exception $e) {
+            Log::info("Erro ao tentar apagar produto");
+            Log::error($e->getMessage());
+        }
+    }
+
+    /**
+     * @param $image
+     * @return bool
+     */
+    public function removeImageFromS3($image)
+    {
+        return Storage::disk('s3')->delete($image);
     }
 }
