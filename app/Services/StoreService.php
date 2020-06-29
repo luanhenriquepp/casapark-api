@@ -4,8 +4,11 @@ namespace App\Services;
 
 use App\Repositories\StoreRepository;
 use Exception;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Prettus\Repository\Exceptions\RepositoryException;
 
 class StoreService extends AbstractService
 {
@@ -20,6 +23,16 @@ class StoreService extends AbstractService
     public function __construct(StoreRepository $repository)
     {
         $this->repository = $repository;
+    }
+
+    /**
+     * @return LengthAwarePaginator|Collection|mixed
+     * @throws RepositoryException
+     */
+    public function getAllStore()
+    {
+        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        return $this->repository->with($this->repository->relationships)->paginate(250);
     }
 
     /**

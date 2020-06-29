@@ -35,10 +35,7 @@ class ProductService extends AbstractService
     public function getAllPublicPage()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-
         return $this->repository->with($this->repository->relationships)->paginate(250);
-
-
     }
     /**
      * @param ProductRequest $request

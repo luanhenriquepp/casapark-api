@@ -6,6 +6,8 @@ use App\Http\Requests\StoreRequest;
 use App\Services\StoreService;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
+use Prettus\Repository\Exceptions\RepositoryException;
 
 class StoreController extends AbstractController
 {
@@ -19,6 +21,17 @@ class StoreController extends AbstractController
         $this->service = $service;
     }
 
+    /**
+     * @return JsonResponse
+     * @throws RepositoryException
+     */
+    public function getAllStore()
+    {
+        return response()->json([
+            'data' => $this->service->getAllStore(),
+            'message' => 'Lista'
+        ], Response::HTTP_OK);
+    }
     /**
      * @param StoreRequest $request
      * @return JsonResponse
