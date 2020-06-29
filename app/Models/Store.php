@@ -2,9 +2,6 @@
 
 namespace App\Models;
 
-use App\Product;
-use Illuminate\Support\Facades\Storage;
-
 class Store extends AbstractModel
 {
     protected $table = 'tb_store';
