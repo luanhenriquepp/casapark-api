@@ -17,11 +17,11 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('product_id');
             $table->string('product_name');
             $table->string('description');
-            $table->double('priaaaaaa);
+            $table->double('price');
             $table->integer('discount');
             $table->string('path');
             $table->bigInteger('store_id')->unsigned();
-            $table->foreign('store_id', 'store_id_aafk')
+            $table->foreign('store_id', 'store_id_afk')
                 ->references('store_id')
                 ->on('tb_store')->onDelete('cascade');
             $table->timestamps();
