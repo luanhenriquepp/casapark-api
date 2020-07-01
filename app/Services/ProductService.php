@@ -120,6 +120,6 @@ class ProductService extends AbstractService
     {
         $store = $this->storeRepository->find($request->store_id);
         $path = Str::of($store->store_name)->replace(' ', '-')->lower();
-        return Storage::disk('s3')->put($path, $request->file);
+        return Storage::disk('s3')->put('/'.$path, $request->file);
     }
 }
