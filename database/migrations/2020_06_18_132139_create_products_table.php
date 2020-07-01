@@ -17,10 +17,9 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('product_id');
             $table->string('product_name');
             $table->string('description');
-            $table->float('price');
+            $table->double('price');
             $table->integer('discount');
             $table->string('path');
-            $table->float('price_with_discount');
             $table->bigInteger('store_id')->unsigned();
             $table->foreign('store_id', 'store_id_fk')
                 ->references('store_id')
