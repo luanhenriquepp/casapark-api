@@ -34,7 +34,7 @@ class StoreService extends AbstractService
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         return $this->repository
             ->with($this->repository->relationships)
-            ->orderBy('store_name')
+            ->orderBy('store_name', 'ASC')
             ->paginate(50);
     }
 
