@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Repositories\StoreRepository;
 use Exception;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -26,10 +28,23 @@ class StoreService extends AbstractService
     }
 
     /**
-     * @return LengthAwarePaginator|Collection|mixed
+     * @return JsonResponse
      * @throws RepositoryException
      */
     public function getAllStore()
+    {
+        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+
+        return $this->repository->with($this->repository->relationships)
+            ->orderBy('store_name', 'asc')
+            ->paginate(20);
+
+    }
+    /**
+     * @return LengthAwarePaginator|Collection|mixed
+     * @throws RepositoryException
+     */
+    public function getAllStorePublic()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         return $this->repository->with($this->repository->relationships)->paginate(50);

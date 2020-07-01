@@ -21,6 +21,13 @@ class StoreController extends AbstractController
         $this->service = $service;
     }
 
+    public function index()
+    {
+        return response()->json([
+            'data' => $this->service->getAllStore(),
+            'message' => 'Lista'
+        ], Response::HTTP_OK);
+    }
     /**
      * @return JsonResponse
      * @throws RepositoryException
@@ -28,7 +35,7 @@ class StoreController extends AbstractController
     public function getAllStore()
     {
         return response()->json([
-            'data' => $this->service->getAllStore(),
+            'data' => $this->service->getAllStorePublic(),
             'message' => 'Lista'
         ], Response::HTTP_OK);
     }
