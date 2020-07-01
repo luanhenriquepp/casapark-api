@@ -32,10 +32,7 @@ class StoreService extends AbstractService
     public function getAllStore()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        return $this->repository
-            ->with($this->repository->relationships)
-            ->orderBy('store_name', 'ASC')
-            ->paginate(50);
+        return $this->repository->with($this->repository->relationships)->paginate(50);
     }
 
     /**

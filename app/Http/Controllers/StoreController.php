@@ -21,9 +21,6 @@ class StoreController extends AbstractController
         $this->service = $service;
     }
 
-
-
-
     /**
      * @return JsonResponse
      * @throws RepositoryException
