@@ -21,6 +21,11 @@ class StoreController extends AbstractController
         $this->service = $service;
     }
 
+    public function updateAs($request, $id)
+    {
+        return parent::updateAs($request, $id);
+    }
+
     public function getAllStoreArray()
     {
         return  response()->json([
