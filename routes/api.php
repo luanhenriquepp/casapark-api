@@ -20,6 +20,7 @@ Route::get('store/get-all', 'StoreController@getAllStore');
 Route::post('register', 'UserController@register');
 Route::group(['middleware' => 'auth:api'], function()
 {
+    Route::get('store/with-no-paginate', 'StoreController@getAllStoreArray');
     Route::resource('store', 'StoreController');
     Route::resource('product', 'ProductController');
 });

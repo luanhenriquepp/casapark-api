@@ -34,12 +34,11 @@ class StoreService extends AbstractService
     public function getAllStore()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-
         return $this->repository->with($this->repository->relationships)
             ->orderBy('store_name', 'asc')
             ->paginate(20);
-
     }
+
     /**
      * @return LengthAwarePaginator|Collection|mixed
      * @throws RepositoryException
@@ -48,6 +47,18 @@ class StoreService extends AbstractService
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         return $this->repository->with($this->repository->relationships)->paginate(50);
+    }
+
+
+
+    /**
+     * @return LengthAwarePaginator|Collection|mixed
+     * @throws RepositoryException
+     */
+    public function getAllStoreArray()
+    {
+        return $this->repository->all();
+
     }
 
     /**

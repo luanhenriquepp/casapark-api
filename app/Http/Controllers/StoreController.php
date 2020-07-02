@@ -21,6 +21,13 @@ class StoreController extends AbstractController
         $this->service = $service;
     }
 
+    public function getAllStoreArray()
+    {
+        return  response()->json([
+            'data' => $this->service->getAllStoreArray()
+        ], Response::HTTP_OK);
+    }
+
     public function index()
     {
         return response()->json([
