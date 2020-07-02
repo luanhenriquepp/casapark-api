@@ -14,7 +14,7 @@ class ChangeTyoeDescriptionForLongTextoTbProducts extends Migration
     public function up()
     {
         Schema::table('tb_product', function (Blueprint $table) {
-           $table->longText('description');
+           $table->longText('description')->change();
         });
     }
 
