@@ -3,9 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Store;
-use App\Purchase;
 use Prettus\Repository\Eloquent\BaseRepository;
-use App\Validators\PurchaseValidator;
 
 /**
  * Class PurchaseRepository.
