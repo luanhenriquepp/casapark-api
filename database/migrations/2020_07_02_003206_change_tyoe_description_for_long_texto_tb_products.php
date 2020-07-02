@@ -13,7 +13,7 @@ class ChangeTyoeDescriptionForLongTextoTbProducts extends Migration
      */
     public function up()
     {
-        Schema::table('tb_products', function (Blueprint $table) {
+        Schema::table('tb_product', function (Blueprint $table) {
            $table->longText('description');
         });
     }
@@ -25,7 +25,7 @@ class ChangeTyoeDescriptionForLongTextoTbProducts extends Migration
      */
     public function down()
     {
-        Schema::table('tb_products', function (Blueprint $table) {
+        Schema::table('tb_product', function (Blueprint $table) {
             //
         });
     }
