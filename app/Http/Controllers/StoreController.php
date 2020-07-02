@@ -21,7 +21,7 @@ class StoreController extends AbstractController
         $this->service = $service;
     }
 
-    public function updateAs($request, $id)
+    public function update($request, $id)
     {
         return parent::updateAs($request, $id);
     }
